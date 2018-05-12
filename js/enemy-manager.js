@@ -6,12 +6,12 @@ function EnemyManager(player, collision) {
     var id = -1;
 
     this.new = function (canvas, context, tick) {
-        if (id === 9) {
+        if (id === 49) {
             id = -1;
         }
 
         var enemyType = Math.floor(Math.random() * 2) === 0 ? "/img/book.gif" : "/img/soda.gif";
-        enemyManager.entityList[++id] = new Enemy(id, enemyType, canvas, context, tick, collision)
+        enemyManager.entityList[++id] = new Enemy(id, enemyType, .5, canvas, context, tick, collision, player)
     };
 
     this.draw = function (tick) {

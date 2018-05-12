@@ -4,5 +4,7 @@
         "sizes": "192x192",
         "type": "image/png"
     }],
-    "start_url": "/"
+    "start_url": "/",
+    "display":      "standalone", /* Could be "fullscreen", "standalone", "minimal-ui", or "browser" */
+    "orientation":  "landscape", /* Could be "landscape" or "portrait" */
 }
