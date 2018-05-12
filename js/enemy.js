@@ -16,7 +16,7 @@ function Enemy(id, source, canvas, context, startTime, onCollision) {
     enemy.image = new Image();
     enemy.image.src = source;
     enemy.initialPosition = canvas.width - enemy.image.width;
-    enemy.y = (canvas.height - enemy.image.height) - Math.floor(Math.random() * 203);
+    enemy.y = (canvas.height - enemy.image.height) - Math.floor(Math.random() * 203) - 50;
     enemy.x = enemy.initialPosition;
     enemy.collided = false;
     enemy.onScreen = false;

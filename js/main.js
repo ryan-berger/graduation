@@ -30,8 +30,24 @@ $(document).ready(function () {
     var ticks = 0;
     enemyManager.new(canvas, context, ticks);
 
+    var background = new Image();
+    background.src = "/img/school.gif";
+
+    var loaded = false;
+
+    background.onload = function (ev) {
+        loaded = true;
+    };
+
+// Make sure the image is loaded first otherwise nothing will draw.
+
+
     setInterval(function () {
         context.clearRect(0, 0, canvas.width, canvas.height);
+        if (loaded) {
+            console.log(background);
+            context.drawImage(background, 0, canvas.height - background.height, $(window).width(), 600);
+        }
         ticks++;
 
         drawRectangle(canvas, context, score);

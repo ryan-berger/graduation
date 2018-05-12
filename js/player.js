@@ -11,12 +11,13 @@ function Ryan(source, canvas, context) {
     ryan.update = function (tick) {
         var value = ryan.dx !== 0 ? ((-.09) * Math.pow(tick - ryan.dx, 2)) + 6 * (tick - ryan.dx) : 0;
         ryan.jumping = value > 0;
-        ryan.y = (canvas.height - ryan.image.height) - (value > 0 ? value : 0)
+        ryan.y = (canvas.height - ryan.image.height) - (value > 0 ? value : 0) - 50
     };
 
     ryan.y = 0;
     ryan.image = new Image();
     ryan.image.src = source;
+
 
     this.draw = function (tick) {
         ryan.update(tick);
