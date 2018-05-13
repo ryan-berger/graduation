@@ -9,8 +9,7 @@ function EnemyManager(player, collision, scale) {
         if (id === 49) {
             id = -1;
         }
-        console.log(enemyManager.entityList);
-        var enemyType = Math.floor(Math.random() * 2) === 0 ? "/img/book.gif" : "/img/soda.gif";
+        var enemyType = generateRandomEnemy();
         enemyManager.entityList[++id] = new Enemy(id, enemyType, enemyManager.scale, canvas, context, tick, collision, player)
     };
 
@@ -22,4 +21,9 @@ function EnemyManager(player, collision, scale) {
             }
         }
     };
+
+    function generateRandomEnemy() {
+        var enemyTypes = ["/img/book.gif", "/img/soda.gif", "/img/bad-grade.gif"];
+        return enemyTypes[Math.floor(Math.random() * 3)];
+    }
 }

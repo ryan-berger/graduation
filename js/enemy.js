@@ -28,7 +28,7 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     };
 
     this.generateLowY = function() {
-        return randomIntFromInterval(277 - player.width, canvas.height) - enemy.height;
+        return randomIntFromInterval(277 - player.height, canvas.height) - enemy.height;
     };
 
 
@@ -72,8 +72,8 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     this.hasCollided = function (player) {
         return (enemy.x < player.x + (player.width / 2) &&
             enemy.x + (enemy.width / 2) > player.x &&
-            enemy.y < player.y + (player.height / 1.5) &&
-            (enemy.height / 1.5) + enemy.y > player.y);
+            enemy.y < player.y + (player.height / 2) + 50 &&
+            (enemy.height) + enemy.y > player.y);
     };
 
     this.shouldRecycle = function () {
