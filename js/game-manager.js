@@ -9,33 +9,46 @@ function GameManager(canvas) {
     gameManager.sodasCollected = 0;
 
 
-    gameManager.startGame = function() {
+    gameManager.startGame = function(reversed) {
+
         gameManager.canvas.width = $(window).width();
         gameManager.canvas.height = $(window).height();
         gameManager.ticks = 0;
         gameManager.score = 50;
 
-
-        gameManager.ryan = new Ryan("/img/sprite.gif", canvas, gameManager.context, .5);
+        gameManager.ryan = new Ryan("/img/sprite.gif", canvas, gameManager.context, 1);
         gameManager.enemyManager = new EnemyManager(gameManager.ryan, function (enemy) {
             if (enemy.image.src = "/img/book.gif") {
                 gameManager.calcBooksCollected++;
             } else {
                 gameManager.sodasCollected++;
             }
-        });
+        }, 1);
+
+        if (gameManager.canvas.height < 400) {
+            gameManager.ryan.scale = .5;
+            gameManager.enemyManager.scale = .5;
+        }
+
+        window.addEventListener("resize", function() {
+            // Get screen size (inner/outerWidth, inner/outerHeight)
+            gameManager.canvas.width = $(window).width();
+            gameManager.canvas.height = $(window).height();
+
+            console.log(gameManager.canvas.height);
+
+            if (gameManager.canvas.height < 400) {
+                gameManager.ryan.scale = .75;
+            }
+
+        }, false);
+
+
 
         gameManager.enemyManager.new(canvas, gameManager.context, gameManager.ticks);
 
         gameManager.background = new Image();
         gameManager.background.src = gameManager.canvas.width > 800 ? "/img/school.gif" : "/img/school-small.gif";
-
-        gameManager.background.onload = function (ev) {
-
-            console.log(gameManager.background.height);
-            console.log(gameManager.background.width);
-
-        };
 
 
         $(window).keydown(function () {
@@ -51,12 +64,12 @@ function GameManager(canvas) {
     };
 
     function runGameLoop() {
-        var interval = setInterval(function () {
+        gameManager.interval = setInterval(function () {
             gameManager.context.clearRect(0, 0, canvas.width, canvas.height);
             gameManager.context.drawImage(gameManager.background, 0, 0, $(window).width(), $(window).height());
             gameManager.ticks++;
             if (getGrade() <= 0) {
-                clearInterval(interval);
+                clearInterval(gameManager.interval);
             }
 
             drawHealthBar(canvas, gameManager.context, getGrade());
@@ -70,6 +83,14 @@ function GameManager(canvas) {
 
         }, 10);
     }
+
+    this.pauseGame = function () {
+        if (gameManager.interval !== undefined) {
+            clearInterval(gameManager.interval)
+        }
+    };
+
+
 
     function drawHealthBar(canvas, context, score) {
         var x = canvas.width - (canvas.width / 8) - 300;
@@ -89,10 +110,10 @@ function GameManager(canvas) {
     }
 
     function getSodaScore() {
-        return (gameManager.sodasCollected + 5) + gameManager.ticks * -.01;
+        return (gameManager.sodasCollected + 5) + gameManager.ticks * -.005;
     }
 
     function getCalc() {
-        return ((5 * gameManager.calcBooksCollected) - (8 * gameManager.badGradesCollected)) + gameManager.ticks * -.05
+        return ((5 * gameManager.calcBooksCollected) - (8 * gameManager.badGradesCollected)) + gameManager.ticks * -.025
     }
 }

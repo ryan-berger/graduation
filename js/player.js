@@ -7,6 +7,8 @@ function Ryan(source, canvas, context, scale) {
     ryan.width = 0;
     ryan.height = 0;
 
+    ryan.scale = scale;
+
     ryan.jumping = false;
 
     ryan.acceleration = -9.8;
@@ -24,8 +26,8 @@ function Ryan(source, canvas, context, scale) {
     ryan.image.src = source;
 
     ryan.image.onload = function (ev) {
-        ryan.width = ryan.image.width * scale;
-        ryan.height = ryan.image.height * scale;
+        ryan.width = ryan.image.width * ryan.scale;
+        ryan.height = ryan.image.height * ryan.scale;
     };
 
 

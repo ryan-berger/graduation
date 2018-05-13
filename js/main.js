@@ -4,11 +4,16 @@ $(document).ready(function () {
 
     window.addEventListener("orientationchange", function() {
         if (window.orientation === 90 || window.orientation === -90) {
-            alert("wait")
+            alert("starting game");
+            gameManager.startGame()
         } else {
-            alert("hi");
+            gameManager.pauseGame()
         }
     });
 
-    gameManager.startGame();
+    if ($(window).width() <= 500 && !(window.orientation === 90 || window.orientation === -90)) {
+
+    } else {
+        gameManager.startGame()
+    }
 });

@@ -24,13 +24,11 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     };
 
     this.generateHighY = function() {
-        console.log("High");
-        return canvas.height - randomIntFromInterval(player.height, 277);
+        return randomIntFromInterval(0, 277) - enemy.height;
     };
 
     this.generateLowY = function() {
-        console.log("low");
-        return canvas.height - randomIntFromInterval(0, 277 - player.height);
+        return randomIntFromInterval(277 - player.width, canvas.height) - enemy.height;
     };
 
 
@@ -47,10 +45,8 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     };
 
 
-    enemy.initialPosition = canvas.width - enemy.image.width;
+    enemy.initialPosition = canvas.width - enemy.width;
     enemy.y = enemy.randomlyGenerateY();
-
-    console.log(enemy.y);
 
     enemy.x = enemy.initialPosition;
 
@@ -76,8 +72,8 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     this.hasCollided = function (player) {
         return (enemy.x < player.x + (player.width / 2) &&
             enemy.x + (enemy.width / 2) > player.x &&
-            enemy.y < player.y + player.height &&
-            enemy.height + enemy.y > player.y);
+            enemy.y < player.y + (player.height / 1.5) &&
+            (enemy.height / 1.5) + enemy.y > player.y);
     };
 
     this.shouldRecycle = function () {

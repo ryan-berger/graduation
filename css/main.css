@@ -293,4 +293,29 @@ textarea {
 body {
     width: 100vw;
     height: 100vh;
+    position: relative;
 }
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .8);
+}
+
+@media screen and (orientation:portrait) and (min-width: 500px){
+    .overlay {
+        display: block;
+    }
+}
+
+@media screen and (orientation:landscape)  {
+    .overlay {
+        display: none;
+    }
+}
+
+

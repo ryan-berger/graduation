@@ -1,6 +1,6 @@
-function EnemyManager(player, collision) {
+function EnemyManager(player, collision, scale) {
     var enemyManager = this;
-
+    enemyManager.scale = scale;
     enemyManager.entityList = new Array(50);
 
     var id = -1;
@@ -9,9 +9,9 @@ function EnemyManager(player, collision) {
         if (id === 49) {
             id = -1;
         }
-
+        console.log(enemyManager.entityList);
         var enemyType = Math.floor(Math.random() * 2) === 0 ? "/img/book.gif" : "/img/soda.gif";
-        enemyManager.entityList[++id] = new Enemy(id, enemyType, .5, canvas, context, tick, collision, player)
+        enemyManager.entityList[++id] = new Enemy(id, enemyType, enemyManager.scale, canvas, context, tick, collision, player)
     };
 
     this.draw = function (tick) {
