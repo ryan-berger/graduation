@@ -15,20 +15,23 @@ function randomIntFromInterval(min,max)
 
 function Enemy(id, source, scale, canvas, context, startTime, onCollision, player) {
     var enemy = this;
-    enemy.width = 0;
-    enemy.height = 0;
 
+    this.playerPosition = function (tick) {
+        return ((-.09) * Math.pow(tick, 2)) + 10  * (tick)
+    };
 
     this.randomlyGenerateY = function() {
         return Math.floor(Math.random() * 2) === 0 ? enemy.generateHighY() : enemy.generateLowY();
     };
 
     this.generateHighY = function() {
-        return randomIntFromInterval(0, 277) - enemy.height;
+        var random = enemy.playerPosition(randomIntFromInterval(40, 55.555));
+        return canvas.height - player.height() - random + 30;
     };
 
     this.generateLowY = function() {
-        return randomIntFromInterval(277 - player.height, canvas.height) - enemy.height;
+        var random = enemy.playerPosition(randomIntFromInterval(0, 40));
+        return canvas.height - player.height() - random + 30;
     };
 
 
@@ -39,14 +42,18 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
     enemy.image.src = source;
 
 
-    enemy.image.onload = function (ev) {
-      enemy.width = enemy.image.width * scale;
-      enemy.height = enemy.image.width * scale;
+    enemy.width = function() {
+        return enemy.image.width === undefined ? 0 : enemy.image.width * scale;
+    };
+
+    enemy.height = function() {
+        return enemy.image.height === undefined ? 0 : enemy.image.height * scale;
     };
 
 
-    enemy.initialPosition = canvas.width - enemy.width;
+    enemy.initialPosition = canvas.width - enemy.width();
     enemy.y = enemy.randomlyGenerateY();
+
 
     enemy.x = enemy.initialPosition;
 
@@ -61,19 +68,19 @@ function Enemy(id, source, scale, canvas, context, startTime, onCollision, playe
             onCollision(enemy);
 
         enemy.onScreen = isOnScreen(canvas, enemy.image, enemy.x);
-        enemy.x = (enemy.initialPosition - (4 * (tick - startTime)));
+        enemy.x = (enemy.initialPosition - (6 * (tick - startTime)));
         this.draw();
     };
 
     this.draw = function () {
-        context.drawImage(enemy.image, enemy.x, enemy.y, enemy.height, enemy.width);
+        context.drawImage(enemy.image, enemy.x, enemy.y, enemy.height(), enemy.width());
     };
 
     this.hasCollided = function (player) {
-        return (enemy.x < player.x + (player.width / 2) &&
-            enemy.x + (enemy.width / 2) > player.x &&
-            enemy.y < player.y + (player.height / 2) + 50 &&
-            (enemy.height) + enemy.y > player.y);
+        return (enemy.x < player.x + (player.width() / 2) &&
+            enemy.x + (enemy.width() / 2) > player.x &&
+            enemy.y < player.y + (player.height() / 2) + 50 &&
+            (enemy.height()) + enemy.y > player.y);
     };
 
     this.shouldRecycle = function () {

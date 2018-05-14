@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     window.addEventListener("orientationchange", function() {
         if (window.orientation === 90 || window.orientation === -90) {
-            alert("starting game");
             gameManager.startGame()
         } else {
             gameManager.pauseGame()
@@ -16,4 +15,5 @@ $(document).ready(function () {
     } else {
         gameManager.startGame()
     }
+
 });
