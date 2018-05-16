@@ -30,9 +30,9 @@ function EnemyManager(player, collision, scale) {
     function getEnemyType() {
         var random = Math.random();
         console.log(random);
-        if (random >= 0 && random <= .35) {
+        if (random >= 0 && random <= .4) {
             return 0;
-        } else if(random > .35 && random <= .6) {
+        } else if(random > .4 && random <= .7) {
             return 1;
         } else {
             return 2;

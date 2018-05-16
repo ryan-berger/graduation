@@ -113,8 +113,8 @@ function GameManager(canvas) {
 
     function navigateAway() {
         setTimeout(function () {
-            window.location.href = "/";
-        }, 2000)
+            window.location.href = "/announcement.html";
+        }, 2500)
     }
 
     this.pauseGame = function () {

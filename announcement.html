@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ryan Berger | Class of 2018</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+
+
+    <style>
+
+        .content {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+
+            background: #A5D6A7;
+        }
+
+        .calendar-link {
+            text-decoration: none;
+            align-self: center;
+        }
+
+        .calendar-button {
+            color: white;
+            text-decoration: none;
+            background: #B39DDB;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+            margin-left: 64px;
+        }
+
+        .calendar-button:hover {
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .announcement {
+            max-width: 600px;
+            width: 100vw;
+            margin: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            align-self: center;
+        }
+
+        form {
+            align-self: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            .announcement {
+                /*height: 300px;*/
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .calendar-button {
+                margin-top: 32px;
+                margin-left: 0;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            .announcement {
+                /*height: 224px;*/
+            }
+        }
+    </style>
+
+</head>
+<body>
+<div class="content">
+    <img src="img/announcement.png" class="announcement">
+
+    <div class="buttons">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+                   alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+        <a target="_blank" class="calendar-link" href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MGJrMGoydHBvc2ttMDJvNGhib3Q5NGkxamogcnlhbmJiZXJnZXJAbQ&amp;tmsrc=ryanbberger%40gmail.com">
+            <div class="calendar-button">+ ADD TO YOUR CALENDAR</div>
+        </a>
+    </div>
+</div>
+</body>
+</html>
