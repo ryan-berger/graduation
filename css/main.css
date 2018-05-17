@@ -386,6 +386,7 @@ canvas {
     display: flex;
     flex: 0 1 auto;
     justify-content: center;
+    padding: 8px;
 }
 
 .tutorial-overlay__ok {
@@ -401,7 +402,7 @@ canvas {
 
 .tutorial-overlay__item {
     display: flex;
-    padding: 32px;
+    padding: 4px;
 }
 
 .tutorial-overlay__image {
